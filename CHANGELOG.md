@@ -1,52 +1,210 @@
-# Changelog
+## Unreleased version
 
-All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+- Added `post_search` config setting that creates a Search button in the navbar (older websites need to set `post_search: true` to enable this feature) (#770)
+- BREAKING CHANGE: More control over RSS feed sharing: previously, an RSS feed was *always* generated, and if the config setting `rss-description` was set then there was an RSS icon in the footer. Now, an RSS feed is only generated when the config setting `rss-description` exists, and an RSS footer icon is only shown if `rss: true` is set in the `social-network-links` config settings 
+- Fixed page titles, subtitles, and excerpts rendering correctly when there are special characeters in them (#856) 
+- Slightly reworked margins and position for avatar image to resolve an alignment issue on Safari.
+- Changed the width at which the navbar collapses to a higher threshold because most modern non-mobile browsers are >1000px
+- Fixed bug where navbar secondary level dropdown items didn't inherit the same colour as the primary navbar links
+- Fixed bug where the navbar "burger" collapsed button didn't always revert back to a light colour
+- Fixed bug where using an image as a navbar title did not render in GitHub Project pages that did not have a custom domain
+- Fixed issue where image thumbnails on the feed page were always forced into a square rather than maintaining a proper image aspect ratio
+- Added support for Patreon, Medium, and Itch.io in the social network links in the footer (#783, #788)
+- Fixed bug where special characters in the title led to broken share tags (#744)
+- Updated staticman from using v2 (public servers) to v3 (private servers) due to the public servers becoming obsolete (#775)
+- Added support for Cloudflare Analytics (#797)
+- Added Reddit in share options of posts (#815)
+- Added support for giscus comments (#886) and CommentBox (#960)
+- Fixed bug where staticman didn't work jQuery slim version is used (#766)
+- Fixed very long strings to wrap around the next line rather than go off-screen (#787)
+- Added `footer-hover-col` config setting to customize the hover colour of links in the footer (#848)
+- Added social network links for Discord (#907), Kaggle (#961), and Hackerrank (#978)
 
-## [5.2.1](https://github.com/cotes2020/jekyll-theme-chirpy/compare/v5.2.0...v5.2.1) (2022-06-17)
+## v5.0.0 (2020-09-15)
+
+One of the major changes in this version is that a lot of time was spent on rethinking the entire SEO and social media sharing model (how a page looks on eg. Google, Twitter, Facebok). It was redesigned to be more simple and customizable. The new documentation has a section dedicated to SEO and social media sharing of a page. Unfortunately some changes that are not backwards-compatible had to be made.
+
+#### Breaking changes
+
+- Renamed `description` YAML parameter to `share-description` to be more clear
+- Renamed `description` config setting to `rss-description` since it was only used in RSS (the FAQ explains the difference between YAML parameters and config settings if you're confused)
+- Removed YAML parameter `use-site-title` (you can now specify the exact title using `share-title`)
+- Removed undocumented YAML parameters `meta-title` and `meta-description`
+- Removed `link-tags` config setting because it wasn't necessary. If you use tags, there will now always be a tags page created; if you don't use tags there won't be a tags page.
+- The YAML parameter `show-avatar` is now true by default. This has always been the case for GitHub Pages users, but not for `remote_theme` users. For consistency, it's now the default for everyone. (#715)
+
+#### New parameters and settings
+
+- Added `full-width` YAML parameter to allow having full-width pages
+- Added `feed_show_excerpt` config setting to show/hide the post excerpts on the feed page
+- Added `feed_show_tags` config setting to show/hide the list of tags on post previews on the feed page
+- Added `share-title` YAML parameter to give control over the search engine/social media title
+- Added `last-updated` YAML parameter to show a "Last Updated on" date for blog posts
+- Added `before-content` and `after-content` YAML parameters that allow you to add some common HTML before the main content of a page (below the title) or after the main content (above the footer). Works in a similar way to `footer-extra`.
+- Added `head-extra` YAML parameter which is similar to `footer-extra` but is used to include custom HTML code in a page's `<head>` tag
+- Added `site-js` config setting to provide JavaScript files that are used on all pages in the site
+
+#### New features and improvements
+
+- Improved the `footer-extra` YAML parameter to support multiple files instead of only a single file
+- Added automatic navbar color detection (#702)
+- When `nav-short` is turned on, the avatar will also be shorter
+- Changed navbar and footer background colour to be slightly darker, for better contrast with the default white page background for accessibility reasons
+- Changed the behaviour of `site-css` to include site-wide CSS file **before** instead of after page-specific files
+- Renamed internal css/js files from "main" to "beautifuljekyll" to make it easier for users to troubleshoot
+- Added alt text to all images for better accessibility
+- Made thumbnail images square instead of circles, as users reported that circles cut off important parts of images
+
+#### Bug fixes
+
+- Fixed rendering issues with `nav-short` parameter that caused the body of the page to start too low
+- Fixed some CSS styles that broke during the bootstrap 4 migration (#716)
+
+#### Library upgrades
+
+- Upgraded kramdown to version 2.3.0 to fix security issues
+- Upgraded jQuery to version 3.5.1 to fix a couple security vulnerabilities with the previous version
 
 
-### Bug Fixes
+## v4.1.0 (2020-08-08)
 
-* exclude CHANGELOG from output ([971fe03](https://github.com/cotes2020/jekyll-theme-chirpy/commit/971fe03ec329ae49e7d60fe3af6101cfbd1acd6c))
-* **PWA:** sometimes update notification is not triggered ([96af729](https://github.com/cotes2020/jekyll-theme-chirpy/commit/96af7291ea5b2c5ed6372e7b6f7725e67c69f1ba))
+- Added Open Graph `site_name` meta field to pages automatically
+- Added `text-col` config setting  for main text color (#694)
+- Added `keywords` config setting to set the meta keywords on all pages (for SEO purposes) (#691)
+- Added `mobile-theme-col` config setting to allow a mobile theme colour (#692)
+- Added `site-css` config setting in the config file to provide CSS files that are used on all pages in the site (#695)
+- Added YAML parameter `description`: creates the meta description on a page, intended to provide a brief description of the page for search engines and when the page is shared (#690)
 
-## [5.2.0](https://github.com/cotes2020/jekyll-theme-chirpy/compare/v5.1.0...v5.2.0) (2022-06-09)
+## v4.0.1 (2020-07-13)
 
+- Fixed staticman comments UI that was broken since the migration to bootstrap 4
 
-### Features
+## v4.0.0 (2020-07-12)
 
-* add es-ES support to locales ([#533](https://github.com/cotes2020/jekyll-theme-chirpy/issues/533)) ([efe75ad](https://github.com/cotes2020/jekyll-theme-chirpy/commit/efe75adf2784956afb7a0b67f6634b146d9cb03b))
-* add fr-FR support to locales ([#582](https://github.com/cotes2020/jekyll-theme-chirpy/issues/582)) ([94e8144](https://github.com/cotes2020/jekyll-theme-chirpy/commit/94e81447afa457b1a6b7e8f487c47502803556d7))
-* add Vietnamese locale ([#517](https://github.com/cotes2020/jekyll-theme-chirpy/issues/517)) ([171463d](https://github.com/cotes2020/jekyll-theme-chirpy/commit/171463d76da9b7bc25dd327b8f0a868ea79e388b))
-* add pt-BR support to locales ([c2c503f](https://github.com/cotes2020/jekyll-theme-chirpy/commit/c2c503f63336884282b6bda4ec0703d6ae76771b))
-* add option to turn off PWA ([#527](https://github.com/cotes2020/jekyll-theme-chirpy/issues/527)) ([106c981](https://github.com/cotes2020/jekyll-theme-chirpy/commit/106c981bac71e7434204a77e1f0c9c61d6eb1509))
-* **PWA:** add Service Worker update notification ([d127183](https://github.com/cotes2020/jekyll-theme-chirpy/commit/d127183b9774f6321e409acdb66bf8a85d8814be))
-* support showing description of preview image ([2bd6efa](https://github.com/cotes2020/jekyll-theme-chirpy/commit/2bd6efa95a174ac44e30a3af1e57e6f40d6e0e3a))
+- **BREAKING CHANGE** Replace `image` YAML parameter with `thumbnail-img` to be more clear
+- **MAJOR BEHAVIOUR CHANGE** Don't use the thumbnail as the avatar image
+- Cover image will automatically be used as thumbnail if none is provided
+- Image to share on social media will use the cover image or thumbnail if none is provided
+- All images (social media share, thumbnail, cover) can use either relative or absoluate paths.
+- Fixed issue where if a dropdown menu was the last item in the menu bar, it did not have a proper margin on the right
+- Added social network links: Mastodon (#646), Google Scholar, ORCID (#670)
+- Added support for sharing pages on new social network: VK (#657)
+- Use Open Graph type 'article' for blog posts (#669)
+- Use Twitter's large sumary card (large image) when there is a cover image, thumbnail image, or share image specified (#668)
+- Made post images in the feed page smaller on smaller devices
+- Fixed jQuery version in staticman (#671)
 
+## v3.0.0 (2020-05-07)
 
-### Bug Fixes
+- **BREAKING CHANGE** Upgraded from Bootstrap 3.3.2 to 4.4.1. This involved a major rewrite of most components. This shouldn't affect any users unless you have custom HTML/CSS code which the new Bootstrap could have broken.
+- **BREAKING CHANGE** Renamed `bigimg` YAML parameter to `cover-img`
+- **BREAKING CHANGE** Removed `googlefonts` YAML parameter since googlefonts are just CSS so they can be loaded via `ext-css`
+- **BREAKING CHANGE** Upgraded from jQuery 1.11.2 to 3.4.2. This should not affect most people
+- Added `navbar-border-col` setting in the config file
+- Added accessibility features where possible
+- Made the theme completely responsive by rewriting all CSS to use 'rem' instead of 'px'
+- Rewrote and simplified some JavaScript code to use CSS or Bootstrap alternatives that weren't available in 2015
+- Removed most of the sample posts so that users only have two sample posts to learn from
+- Improvements to the README instructions
 
-* alt is not a valid attribute for 'a' tag ([58928db](https://github.com/cotes2020/jekyll-theme-chirpy/commit/58928dbc9068db4e4cda4371eeae1865920dce6a))
-* assets URL is missing `baseurl` in self-hosted mode ([#591](https://github.com/cotes2020/jekyll-theme-chirpy/issues/591)) ([54124d5](https://github.com/cotes2020/jekyll-theme-chirpy/commit/54124d5134995fce52e4c2fc0a5d4d1743d6264d))
-* correct the `twitter:creator` of Twitter summary card ([96a16c8](https://github.com/cotes2020/jekyll-theme-chirpy/commit/96a16c868ede51e7dfa412de63ffa1e5a49add7f))
-* correctly URL encode share links ([4c1c8d8](https://github.com/cotes2020/jekyll-theme-chirpy/commit/4c1c8d8b0eacecbbaa2d522bbdd6430f350ff760)), closes [#496](https://github.com/cotes2020/jekyll-theme-chirpy/issues/496)
-* follow paginate_path config for pagination ([6900d9f](https://github.com/cotes2020/jekyll-theme-chirpy/commit/6900d9f2bc9380cbda4babf611c6eeff345291af))
-* force checkout of `gh-pages` branch ([#544](https://github.com/cotes2020/jekyll-theme-chirpy/issues/544)) ([5402523](https://github.com/cotes2020/jekyll-theme-chirpy/commit/5402523ae52a3740bcc15df0b226b2612644945d))
-* horizontal scroll for long equations ([#545](https://github.com/cotes2020/jekyll-theme-chirpy/issues/545)) ([30787fc](https://github.com/cotes2020/jekyll-theme-chirpy/commit/30787fc4cf151e955bb7afc26dfd859f1a06fce6))
-* p is not allowed in span ([4f590e2](https://github.com/cotes2020/jekyll-theme-chirpy/commit/4f590e2bba0639751771211bc0d357828ae70404))
-* remove whitespace from avatar URL ([#537](https://github.com/cotes2020/jekyll-theme-chirpy/issues/537)) ([0542b51](https://github.com/cotes2020/jekyll-theme-chirpy/commit/0542b5149c8287dca60e37f46ee36f31b43455e4))
-* resume the preview image SEO tag ([#529](https://github.com/cotes2020/jekyll-theme-chirpy/issues/529)) ([b8d1bcd](https://github.com/cotes2020/jekyll-theme-chirpy/commit/b8d1bcd3dea0abd1afef7ef154a4501fbb18938d))
-* script code should be in head or body, not in between ([2103191](https://github.com/cotes2020/jekyll-theme-chirpy/commit/2103191b2faf714a8e4418c7c347a1f942b51af8))
-* spurious header closing tags ([59e9557](https://github.com/cotes2020/jekyll-theme-chirpy/commit/59e955745f02f9b57c65af70b0979cd4a98bf53f))
-* table bypass refactoring when it contains IAL ([#519](https://github.com/cotes2020/jekyll-theme-chirpy/issues/519)) ([5d85ccb](https://github.com/cotes2020/jekyll-theme-chirpy/commit/5d85ccb9943aac88dbbefebe1c2234cdcbae5c53))
-* **theme mode:** `SCSS` syntax error ([#588](https://github.com/cotes2020/jekyll-theme-chirpy/issues/588)) ([76a1b6a](https://github.com/cotes2020/jekyll-theme-chirpy/commit/76a1b6a068c369138422dcd18ba08ec8cc3749a6))
-* use `jsonify` to generate valid json ([#521](https://github.com/cotes2020/jekyll-theme-chirpy/issues/521)) ([dd9d5a7](https://github.com/cotes2020/jekyll-theme-chirpy/commit/dd9d5a7207b746342d07176d8969dc4f2c380bf2))
-* when the `site.img_cdn` is set to the local path, the preview-image path loses the `baseurl` ([9cefe58](https://github.com/cotes2020/jekyll-theme-chirpy/commit/9cefe58993d9ea3a3a28424e7ffd8e0911567c5c))
+## v2.3.0 (2020-04-29)
 
+- Added YAML parameter `footer-extra` for including custom content in the footer
+- Fixed issue: linking to a specific part of a page resulted in scrolling too far (#69)
+- Added YAML parameter `nav-short` to have navbar permanently collapsed
+- Added social network link: Calendly
+- Fixed bug where RSS link in footer was showing even when turned off
 
-### Improvements
+## v2.2.0 (2020-04-27)
 
-* avoid post pageviews from shifting while loading ([135a16f](https://github.com/cotes2020/jekyll-theme-chirpy/commit/135a16f13ee783d9308669ff9a824847a73c951c))
-* avoid the layout shift for post datetime ([6d35f5f](https://github.com/cotes2020/jekyll-theme-chirpy/commit/6d35f5f8da044cfad071628bb53776de03efaae4))
-* **categories:** support singular and plural forms of locale ([#595](https://github.com/cotes2020/jekyll-theme-chirpy/issues/595)) ([35cadf9](https://github.com/cotes2020/jekyll-theme-chirpy/commit/35cadf969dd0161ee62503e242c545f006f7072b))
-* improve the responsive design for ultrawide screens ([#540](https://github.com/cotes2020/jekyll-theme-chirpy/issues/540)) ([5d6e8c5](https://github.com/cotes2020/jekyll-theme-chirpy/commit/5d6e8c5ef6aa71b4d2600c5305f6e8ba540557f7))
+- Added social network link: Telegram (#625) (thanks @mashed-potatoes)
+- Moved the demo site to an independent URL: https://beautifuljekyll.com
+- Major documentation overhaul and cleanup of old files
+- Fixed a few bugs from the remote_theme migration
+
+## v2.0.0 (2020-04-26)
+
+- Beautiful-Jekyll v2.0.0 available as an official Ruby gem
+- Beautifull-Jekyll now supports the `remote_theme` config (#339) (thanks @gpotter2 and @skalee)
+- Consolidated the demo site, the ruby gem, and the master branch into one
+- Added a `home` layout and used it in the index page
+- Added readtime support for the post header (#622) (thanks @MutMatt and @rubyreads)
+- Removed the dependency on `_data` folder since it doesn't get copied when using `remote_theme` (#614)
+- Added support for configuring lang attribute on `html` tag (#608) (thanks @skalee)
+- Added ability to disable round logo (thanks @gpotter2)
+- Added support for Utterances comments (#596) (thanks @colynn)
+- Removed 'just-comments' as it's getting killed at the end of the year
+- Upgraded font-awesome to 5.12.1 (#587) (thanks @cketti)
+
+## Prior to 2020
+
+**2018-12-24** Add support for Staticman comments (#440) (thanks @VincentTam)
+
+**2018-10-19** Move Google Analytics to the head (#419) (thanks @jpvicari)
+
+**2018-06-08** Add support for Facebook comments (#350) (thanks @npes87184)
+
+**2018-02-22** Automatically generate sitemap (#323) (thanks @JosemyDuarte)
+
+**2018-01-18** Add clickable tags to each post and a tags index page, works for GitHub sites (#307) (thanks @OCram85)
+
+**2018-01-14** Redo Dockerfile (#302) (thanks @jennydaman)
+
+**2018-01-06** More color personalization options (#297 and #299) (thanks @jennydaman)
+
+**2018-01-05** Abstract the social networks logic (thanks @OCram85)
+
+**2018-01-03** Avatar image no longer causes a ghost click (thanks @alefi87)
+
+**2017-10-16** Add GitHub buttons to posts (#265) (thanks @yonicd)
+
+**2017-09-04** Ability to change colour/image of navbar/footer/body
+
+**2017-08-17** Add support for notification, error, and warning boxes in markdown (#227) (thanks @OCram85)
+
+**2017-08-12** Add social buttons for twitch, yelp, and steam (#234) (thanks @TheRealBenForce)
+
+**2017-03-30** Make the footer contact links friendly for screen readers (thanks @eugenius1)
+
+**2017-03-30** Started a CHANGELOG file (thanks @eugenius1)
+
+**2017-01-28** Add Subresource Integrity (SRI) support (#164) (thanks @tony-ho)
+
+**2017-01-09** Add Google Tag Manager Integration (#157) (thanks @csarigoz)
+
+**2017-01-06** Add options to configure HTML document title (#154) (thanks @tony-ho)
+
+**2016-12-25** Allow dynamic images on each blog post (#143) (thanks @bbritten)
+
+**2016-12-15** Support `title-img` config param to have image in the navbar instead of text
+
+**2016-12-08** Add support for phone numbers in footer; fix #136
+
+**2016-12-06** Update gemfile (#134) (thanks @stephentuso)
+
+**2016-10-09** Add Docker deployment (#114) (thanks @mangar)
+
+**2016-08-06** Add social share buttons for posts (thanks @rtlee9)
+
+**2016-07-29** Add CSS styling to code chunks
+
+**2016-07-27** Add clickable tags that lead to a tag page (doesn't work for GitHub hosted sites) (thanks @epwalsh)
+
+**2016-07-21** Add support for twitter cards (sharing on Twitter will be better); fixes #70
+
+**2016-03-18** Support full-width images in page headers; fixes #37
+
+**2016-03-18** Support menus in navigation bar
+
+**2016-02-07** Avatar is now conditional (thanks @hristoyankov)
+
+**2016-02-02** Migrate (forced to...) to jekyll 3
+
+**2016-01-22** Make sure not to include JQuery twice, fixes #29
+
+**2015-11-19** Support external links in navigation bar; fixes #3
+
+... Many small changes because the site was in its infancy
+
+**2015-03-12** Beautiful Jekyll version 0.0000001 is released!
+

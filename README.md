@@ -1,3 +1,6 @@
+bundle exec jekyll serve --incremental
+bundle add webrick
+
 [![](https://i.imgur.com/zNBkzj1.png)](https://beautifuljekyll.com/plans/)
 
 # Beautiful Jekyll

@@ -1,16 +1,35 @@
 ---
 layout: page
 title: About me
-subtitle: Why you'd want to go on a date with me
+subtitle: My CV
 ---
 
-My name is Inigo Montoya. I have the following qualities:
+Education
+======
+* B.S. in Luoyang Normal University
 
-- I rock a great mustache
-- I'm extremely loyal to my family
+Work experience
+======
+* 2020 ~ 2022 : Technical Manager
+  * AHADI Corp., Ltd.
+  * Duties included: Technical management.
+  * Supervisor: CEO. Tiger.
 
-What else do you need?
+* 2007 ~ 2019: Engineer/Manager
+  * CeresData / ZionByte / Haier.
+  * Duties included: System management and maintenance.
+  * Supervisor: CTO.
+  
+Skills
+======
+* Wired/Wireless network
+* Development
+  * Angular / Node.js / Kotlin / flutter / Shell / Perl
+  * MariaDB
+  * Linux / Virtualization
+* Server / Storage / Router / Switch management.
 
-### My story
 
-To be honest, I'm having some trouble remembering right now, so why don't you just watch [my movie](https://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29) and it will answer **all** your questions.
+Service and leadership
+======
+* Wireless network is in well service at Nairobi G44 / ZMM

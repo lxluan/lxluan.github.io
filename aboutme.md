@@ -16,7 +16,7 @@ Work experience
   * Supervisor: CEO. Tiger.
 
 * 2007 ~ 2019: Engineer/Manager
-  * CeresData / ZionByte / Haier.
+  * CeresData / VNC / ZionByte / Haier.
   * Duties included: System management and maintenance.
   * Supervisor: CTO.
   

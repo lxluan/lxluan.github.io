@@ -8,3 +8,5 @@ comments: true
 ---
 
 This is the first version of MiniAlbum app, and the first app I start with the way of personal developer. This app was developed by flutter, at first I want to use fade in and fade out effect, but maybe there is a picture cache bug result in the wrong picture showing sequence. I will try it again when the new flutter version released.
+
+[Get it from GooglePlay](https://play.google.com/store/apps/details?id=com.gmail.lxluan.mini_album)

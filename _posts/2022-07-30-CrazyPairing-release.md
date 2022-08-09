@@ -8,3 +8,5 @@ comments: true
 ---
 
 CrazyPairing is a pairing game ,when you find the only same one animal, tap it then you will win one round and get a point. When the time is up, you can upload your score to internet to participate in ranking.
+
+[Get it from GooglePlay](https://play.google.com/store/apps/details?id=com.gmail.lxluan.crazy_pairing)
